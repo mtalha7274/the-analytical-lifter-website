@@ -197,6 +197,62 @@ body.cursor-hover .cursor--ring { width: 58px; height: 58px; background: rgba(25
 .hero__identity span + span { color: var(--gold); font-size: .7em; letter-spacing: .13em; }
 .hero__subtitle { margin-top: .4rem; color: var(--paper-dim); font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; }
 .hero__actions { margin-top: 2.25rem; display: flex; align-items: center; gap: 2rem; }
+.hero__socials {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  margin-top: 1.6rem;
+  padding: .55rem;
+  width: fit-content;
+  border: 1px solid var(--line-gold);
+  background: rgba(9,10,12,.72);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 35px rgba(0,0,0,.25);
+  font-size: .64rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.hero__socials > span {
+  padding: 0 .65rem;
+  color: var(--gold-bright);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.hero__socials > span::after {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  margin-left: .7rem;
+  vertical-align: middle;
+  background: var(--line-gold);
+}
+.hero__socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  min-height: 38px;
+  padding: .55rem .8rem;
+  border: 1px solid var(--line);
+  background: rgba(243,238,228,.05);
+  color: var(--paper);
+  font-weight: 700;
+  transition: color .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);
+}
+.hero__socials a:hover {
+  color: var(--ink);
+  background: var(--gold-bright);
+  border-color: var(--gold-bright);
+  transform: translateY(-2px);
+}
+.hero__socials svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  flex: 0 0 auto;
+}
 .button {
   position: relative;
   display: inline-flex;
@@ -292,8 +348,41 @@ body.is-loaded .hero__portrait-wrap[data-hero] { animation-delay: .25s; }
 .about-stage { display: grid; grid-template-columns: minmax(300px,.8fr) 1.2fr; gap: clamp(3rem, 8vw, 9rem); }
 .about-stage__sticky { position: sticky; top: 7rem; align-self: start; }
 .about-stage__sticky .eyebrow { color: #806329; }
-.about-stage__portrait { margin-top: 2.5rem; height: 450px; background: #d5cec1; }
-.about-stage__portrait img { width: 100%; height: 100%; object-fit: contain; object-position: bottom; filter: saturate(.7); }
+.about-stage__portrait {
+  margin-top: 2.5rem;
+  height: 520px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(215,181,109,.24), transparent 38%),
+    linear-gradient(145deg, #d8d0c3 0%, #bdb4a6 100%);
+}
+.about-stage__portrait::before {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  z-index: 1;
+  border: 1px solid rgba(9,10,12,.14);
+  pointer-events: none;
+}
+.about-stage__portrait img {
+  width: 100%;
+  height: 122%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: saturate(.72) contrast(1.04) drop-shadow(0 20px 24px rgba(9,10,12,.2));
+  transform: translateY(20%) scale(1.5);
+  transform-origin: center bottom;
+}
+.about-stage__portrait-tag {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 3;
+  padding: .55rem .7rem;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: .52rem;
+  letter-spacing: .16em;
+}
 .about-cards { padding-top: 4rem; }
 .editorial-card { position: relative; padding: 2.5rem 2rem 3rem; border-top: 1px solid rgba(9,10,12,.2); transform-style: preserve-3d; }
 .editorial-card:last-child { border-bottom: 1px solid rgba(9,10,12,.2); }
@@ -462,12 +551,62 @@ body.is-loaded .hero__portrait-wrap[data-hero] { animation-delay: .25s; }
   }
   .nav__links.is-open { transform: translateY(0); }
   .nav__cta { margin-top: 1rem; }
-  .hero { min-height: 92svh; padding: 7rem 1.25rem 2.5rem; }
-  .hero__portrait-wrap { width: 78%; height: 64%; right: -20%; opacity: .58; }
-  .hero__title { font-size: clamp(3.5rem,18vw,6rem); }
+  .hero {
+    min-height: 100svh;
+    align-items: center;
+    justify-items: center;
+    padding: 6.5rem 1.25rem 3rem;
+  }
+  .hero__copy {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero__portrait-wrap {
+    width: 96%;
+    height: 67%;
+    right: 2%;
+    bottom: -7%;
+    opacity: .34;
+  }
+  .hero__portrait { width: 100%; }
+  .hero__orb--one {
+    width: 80vw;
+    right: 10vw;
+    top: auto;
+    bottom: 3%;
+    z-index: 1;
+  }
+  .hero__orb--two {
+    width: 42vw;
+    right: 29vw;
+    top: auto;
+    bottom: 18%;
+    z-index: 1;
+  }
+  .hero__title {
+    width: 100%;
+    font-size: clamp(2.4rem, 12.5vw, 4rem);
+    line-height: .84;
+    letter-spacing: -.085em;
+  }
   .hero__title-line--outline { margin-left: 0; }
-  .hero__identity { flex-direction: column; align-items: flex-start; gap: .2rem; }
-  .hero__actions { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+  .hero__identity { flex-direction: column; align-items: center; gap: .2rem; }
+  .hero__actions { flex-direction: column; align-items: center; gap: 1.25rem; }
+  .hero__socials {
+    width: min(100%, 330px);
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .55rem;
+    padding: .7rem;
+    background: rgba(9,10,12,.88);
+  }
+  .hero__socials > span { width: 100%; padding: .1rem 0 .25rem; }
+  .hero__socials > span::after { display: none; }
+  .hero__socials a { flex: 1; justify-content: center; min-width: 120px; }
   .hero__scroll, .hero__index { display: none; }
   .chapter { grid-template-columns: 1fr; }
   .chapter__rail { display: none; }
@@ -478,7 +617,8 @@ body.is-loaded .hero__portrait-wrap[data-hero] { animation-delay: .25s; }
   .manifesto { margin-left: 0; padding-left: 2rem; }
   .manifesto p { font-size: 1.65rem; }
   .mastery-banner { min-height: 60vh; }
-  .about-stage__portrait { height: 390px; }
+  .about-stage__portrait { height: 470px; }
+  .about-stage__portrait img { height: 118%; transform: translateY(18%) scale(1.42); }
   .editorial-card { padding-inline: 0; }
   .journey-frame { margin-top: 5rem; height: 500px; }
   .certificate-stage { gap: 3rem; }
